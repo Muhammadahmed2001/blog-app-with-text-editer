@@ -2,15 +2,22 @@ var quill = new Quill("#editor", {
   theme: "snow",
 });
 
-console.log(quill)
 
-// var editor = new Quill('.editor');
-function edit(){
-    var editor_content = quill.root.innerHTML
-    var main = document.getElementById("main");
-    // var container = document.getElementById("editor");
-    // var editor = new Quill(container);
-    main.innerHTML = editor_content + main.innerHTML
+var main = document.getElementById("main");
+
+
+function post(){
+  var editor_content = quill.root.innerHTML
+    main.innerHTML = `
+        <div class="col">
+    <div class="card h-100">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">${editor_content}</p>
+            </div>
+        </div>
+    </div>
+</div>` + main.innerHTML
     quill.root.innerHTML = ""
     
     
