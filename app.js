@@ -24,20 +24,33 @@ var quill = new Quill("#editor", {
   },
 });
 
+var title = document.getElementById("title")
 var main = document.getElementById("main");
 
 function post() {
   var editor_content = quill.root.innerHTML;
-  main.innerHTML =
-    `
-        <div class="col">
-    <div class="card h-100">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">${editor_content}</p>
-            </div>
-        </div>
-    </div>
-</div>` + main.innerHTML;
+  console.log(editor_content)
+
+  if(editor_content === ""){
+    alert("kuch likh le bhai");
+  }
+  var getData = localStorage.getItem("data") || "";
+  var dataString = `
+  <div class="col">
+  <div class="card h-100">
+  <div class="card-body">
+  <h1 class="card-title">${title.value}</h1>
+  <p class="card-text">${editor_content}</p>
+  </div>
+  </div>
+  </div>
+  </div>`;
+
+  var addData =  dataString + getData;
+
+  main.innerHTML = addData;
+  localStorage.setItem("data", addData);
+
   quill.root.innerHTML = "";
 }
+
